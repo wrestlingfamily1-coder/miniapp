@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Доступ к приватному каналу</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      margin: 0;
+      padding: 24px;
+    }
+    .container {
+      max-width: 420px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    p {
+      opacity: 0.8;
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+    .tariff {
+      background: #1c1c1c;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .tariff h2 {
+      margin: 0 0 6px 0;
+      font-size: 18px;
+    }
+    .price {
+      opacity: 0.9;
+      margin-bottom: 12px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 15px;
+      background: #2ea6ff;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:active {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Приватный Telegram-канал</h1>
+    <p>Выберите тариф, после чего напишите мне в личные сообщения для оплаты.</p>
+
+    <div class="tariff">
+      <h2>Месяц</h2>
+      <div class="price">800 ₽</div>
+      <button onclick="buy('Месяц', '800')">Выбрать</button>
+    </div>
+
+    <div class="tariff">
+      <h2>Навсегда</h2>
+      <div class="price">2800 ₽</div>
+      <button onclick="buy('Навсегда', '2800')">Выбрать</button>
+    </div>
+  </div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+
+    function buy(tariff, price) {
+      const text = encodeURIComponent(
+        `Здравствуйте! Хочу приобрести доступ к приватному каналу.\n\nТариф: ${tariff}\nЦена: ${price} ₽`
+      );
+      window.open(`https://t.me/caotea?text=${text}`, "_blank");
+    }
+  </script>
+</body>
+</html>
